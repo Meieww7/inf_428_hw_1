@@ -7,3 +7,4 @@ I made the initial settings, structured the folders and somehow figured out how 
 I disassembled and solved the first challenge from the first task. I drew the visual on paper.  I think, I'll redraw it and upload it later. (when I learn and figure out this drawing program). As I read the task, I came up with two solutions to this problem at once, implemented the one that seemed more concise.
 
 ### Day 3 Wednesday:
+Today I solved the other two problems from the first task. I solved them on the litcode 2 years ago, so in fact it didn't take much time.
