@@ -11,3 +11,6 @@ Today I solved the other two problems from the first task. I solved them on the 
 
 ### Day 4 Thursday:
 Today I started and completed the second task. I hope I did everything right because I had doubts about whether I understood the task well enough.
+
+### Day 5 Friday:
+In trying to implement this task, I was looking for an easy way: to use the difference between time as an absolute value, taking into account cyclicity.(the direct difference and the difference through the "reverse transition").This def failed the first test case.(I commented it out) I found another way to convert time to cyclic form using sine and cosine on reddit and stackoverflow. Everything was explained there for the implementation of java code, but I understood the general logic and redid everything in python.The test case included checking for different time values and checking for incorrect values.
