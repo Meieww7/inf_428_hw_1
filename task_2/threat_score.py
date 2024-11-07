@@ -33,5 +33,19 @@ class ThreatScoreTests(unittest.TestCase):
         result = threat_score(dep_data, importance_tags)
         self.assertTrue(0 <= result <= 90)
 
+    def test_mean_threat_scores(self):
+        # у всех отделов похожие mean treat score, дисперсия небольшая
+        departments_data = [
+            generate_random_data(30, 3, 50),
+            generate_random_data(31, 3, 50),
+            generate_random_data(32, 3, 50),
+            generate_random_data(29, 3, 50),
+            generate_random_data(30, 3, 50)
+        ]
+        importance_tags = [1, 1, 1, 1, 1]
+        result = threat_score(departments_data, importance_tags)
+        self.assertTrue(0 <= result <= 90)  # проверка итогового балла в пределах допустимого диапазона
+
+
 if __name__ == "__main__":
     unittest.main()
