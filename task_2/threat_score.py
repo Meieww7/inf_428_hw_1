@@ -23,28 +23,52 @@ class ThreatScoreTests(unittest.TestCase):
     # нет выбросов, не высокие оценки опасности
     def test_no_outliers(self):
         dep_data = [
-            generate_random_data(30, 5, 50),
-            generate_random_data(32, 5, 50),
-            generate_random_data(31, 5, 50),
-            generate_random_data(33, 5, 50),
-            generate_random_data(29, 5, 50)
+            generate_random_data(30, 5, 128),
+            generate_random_data(32, 5, 99),
+            generate_random_data(31, 5, 10),
+            generate_random_data(33, 5, 200),
+            generate_random_data(29, 5, 163)
         ]
-        importance_tags = [1, 1, 1, 1, 1]
+        importance_tags = [1, 2, 3, 4, 5]
         result = threat_score(dep_data, importance_tags)
         self.assertTrue(0 <= result <= 90)
 
     def test_mean_threat_scores(self):
         # у всех отделов похожие mean treat score, дисперсия небольшая
         departments_data = [
-            generate_random_data(30, 3, 50),
-            generate_random_data(31, 3, 50),
-            generate_random_data(32, 3, 50),
+            generate_random_data(30, 3, 47),
+            generate_random_data(31, 3, 94),
+            generate_random_data(32, 3, 155),
             generate_random_data(29, 3, 50),
-            generate_random_data(30, 3, 50)
+            generate_random_data(30, 3, 30)
         ]
-        importance_tags = [1, 1, 1, 1, 1]
+        importance_tags = [5, 1, 4, 3, 2]
         result = threat_score(departments_data, importance_tags)
         self.assertTrue(0 <= result <= 90)  # проверка итогового балла в пределах допустимого диапазона
+
+    def test_similar_number_of_users(self):
+        dep_data = [
+            generate_random_data(56, 5, 100),
+            generate_random_data(32, 5, 100),
+            generate_random_data(20, 5, 100),
+            generate_random_data(87, 5, 100),
+            generate_random_data(12, 5, 100)
+        ]
+        importance_tags = [4, 2, 1, 3, 5]
+        result = threat_score(dep_data, importance_tags)
+        self.assertTrue(0 <= result <= 90)
+
+        def test_same_importance(self):
+            dep_data = [
+                generate_random_data(56, 5, 41),
+                generate_random_data(32, 5, 56),
+                generate_random_data(20, 5, 189),
+                generate_random_data(87, 5, 36),
+                generate_random_data(12, 5, 18)
+            ]
+            importance_tags = [3, 3, 3, 3, 3]
+            result = threat_score(dep_data, importance_tags)
+            self.assertTrue(0 <= result <= 90)
 
 
 if __name__ == "__main__":
