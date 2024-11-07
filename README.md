@@ -8,3 +8,6 @@ I disassembled and solved the first challenge from the first task. I drew the vi
 
 ### Day 3 Wednesday:
 Today I solved the other two problems from the first task. I solved them on the litcode 2 years ago, so in fact it didn't take much time.
+
+### Day 4 Thursday:
+Today I started and completed the second task. I hope I did everything right because I had doubts about whether I understood the task well enough.
