@@ -35,6 +35,7 @@ class ThreatScoreTests(unittest.TestCase):
 
     def test_mean_threat_scores(self):
         # у всех отделов похожие mean treat score, дисперсия небольшая
+        # functional test
         departments_data = [
             generate_random_data(30, 3, 47),
             generate_random_data(31, 3, 94),
@@ -47,6 +48,7 @@ class ThreatScoreTests(unittest.TestCase):
         self.assertTrue(0 <= result <= 90)  # проверка итогового балла в пределах допустимого диапазона
 
     def test_similar_number_of_users(self):
+        # functional test
         dep_data = [
             generate_random_data(56, 5, 100),
             generate_random_data(32, 5, 100),
@@ -58,18 +60,40 @@ class ThreatScoreTests(unittest.TestCase):
         result = threat_score(dep_data, importance_tags)
         self.assertTrue(0 <= result <= 90)
 
-        def test_same_importance(self):
-            dep_data = [
-                generate_random_data(56, 5, 41),
-                generate_random_data(32, 5, 56),
-                generate_random_data(20, 5, 189),
-                generate_random_data(87, 5, 36),
-                generate_random_data(12, 5, 18)
-            ]
-            importance_tags = [3, 3, 3, 3, 3]
-            result = threat_score(dep_data, importance_tags)
-            self.assertTrue(0 <= result <= 90)
+    def test_equal_importance(self):
+        # unit test
+        dep_data = [
+            generate_random_data(56, 5, 41),
+            generate_random_data(32, 5, 56),
+            generate_random_data(20, 5, 189),
+            generate_random_data(87, 5, 36),
+            generate_random_data(12, 5, 18)
+        ]
+        importance_tags = [3, 3, 3, 3, 3]
+        result = threat_score(dep_data, importance_tags)
+        self.assertTrue(0 <= result <= 90)
 
+
+    def test_threat_score_empty_input(self):
+        #unit test
+        dep_data = []
+        importance_tags = []
+        result = threat_score(dep_data, importance_tags)
+        self.assertEqual(result, 0)
+
+
+    def test_high_threat(self):
+        # functional test
+        dep_data = [
+            generate_random_data(10, 5, 50),
+            generate_random_data(15, 5, 50),
+            generate_random_data(85, 5, 50),  # высокий уровень угрозы
+            generate_random_data(20, 5, 50),
+            generate_random_data(25, 5, 50)
+        ]
+        importance_tags = [1, 1, 5, 1, 1]  # максимальная важность департмента где угроза высокая
+        result = threat_score(dep_data, importance_tags)
+        self.assertTrue(result > 50)
 
 if __name__ == "__main__":
     unittest.main()
