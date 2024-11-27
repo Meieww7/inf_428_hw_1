@@ -3,8 +3,13 @@ class Solution:
         #превращаем список в сет
         set1 = set(nums1)
         set2 = set(nums2)
+        result = set()
 
-        result = set1 & set2 # пересекаем сеты между собой
+        for num in set1:
+            if num in set2:
+                result.add(num)
+
+
         return list(result) # возвращаем список
 
 solution = Solution()
